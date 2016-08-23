@@ -1,0 +1,4 @@
+setenv sddtb 'if fatload mmc 0 ${dtb_mem_addr} dtb.img; then echo sd dtb.img loaded; else store dtb read $dtb_mem_addr; fi'
+setenv usbdtb 'if fatload usb 0 ${dtb_mem_addr} dtb.img; then echo usb dtb.img loaded; else store dtb read $dtb_mem_addr; fi'
+if mmcinfo; then if fatload mmc 0 ${loadaddr} kernel.img; then run sddtb; setenv bootargs ${bootargs} bootfromsd; wipeisb; bootm; fi; fi
+if usb start 0; then if fatload usb 0 ${loadaddr} kernel.img; then run usbdtb; setenv bootargs ${bootargs} bootfromusb; wipeisb; bootm; fi; fi
