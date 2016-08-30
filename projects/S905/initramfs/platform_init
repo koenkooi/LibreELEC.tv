@@ -1,6 +1,6 @@
 #!/bin/sh
 
-hdmimode=1080p60hz
+hdmimode=1080p50hz
 
 for arg in $(cat /proc/cmdline); do
   case ${arg} in
