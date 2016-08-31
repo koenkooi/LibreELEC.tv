@@ -1,7 +1,7 @@
 [Unit]
 Description=Debug Shell on /dev/ttyS0
 DefaultDependencies=no
-ConditionKernelCommandLine=console=ttyS0,115200
+ConditionKernelCommandLine=console
 
 [Service]
 WorkingDirectory=/storage
