@@ -1,0 +1,29 @@
+diff --git a/drivers/amlogic/gpu/mali/linux/mali_kernel_sysfs.c b/drivers/amlogic/gpu/mali/linux/mali_kernel_sysfs.c
+old mode 100755
+new mode 100644
+index ecde82d..7b54983
+--- a/drivers/amlogic/gpu/mali/linux/mali_kernel_sysfs.c
++++ b/drivers/amlogic/gpu/mali/linux/mali_kernel_sysfs.c
+@@ -77,7 +77,7 @@ static const char *const mali_power_events[_MALI_MAX_EVENTS] = {
+ 	[_MALI_DEVICE_DVFS_RESUME] = "dvfs_resume",
+ };
+ 
+-static mali_bool power_always_on_enabled = MALI_FALSE;
++static mali_bool power_always_on_enabled = MALI_TRUE;
+ 
+ static int open_copy_private_data(struct inode *inode, struct file *filp)
+ {
+diff --git a/drivers/amlogic/gpu/mali/platform/meson_bu/scaling.c b/drivers/amlogic/gpu/mali/platform/meson_bu/scaling.c
+index 1a725a1..b87a3fb 100644
+--- a/drivers/amlogic/gpu/mali/platform/meson_bu/scaling.c
++++ b/drivers/amlogic/gpu/mali/platform/meson_bu/scaling.c
+@@ -32,7 +32,8 @@ static int lastStep;
+ static struct work_struct wq_work;
+ static mali_plat_info_t* pmali_plat = NULL;
+ #endif
+-static int  scaling_mode = MALI_PP_FS_SCALING;
++static int  scaling_mode = MALI_TURBO_MODE;
++//static int  scaling_mode = MALI_PP_FS_SCALING;
+ //static int  scaling_mode = MALI_SCALING_DISABLE;
+ //static int  scaling_mode = MALI_PP_SCALING;
+ 
