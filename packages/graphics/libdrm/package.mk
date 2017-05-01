@@ -36,6 +36,7 @@ get_graphicdrivers
 
 DRM_CONFIG="--disable-intel --disable-radeon --disable-amdgpu"
 DRM_CONFIG="$DRM_CONFIG --disable-nouveau --disable-vmwgfx --disable-vc4"
+DRM_CONFIG="$DRM_CONFIG --disable-freedreno"
 
 for drv in $GRAPHIC_DRIVERS; do
   [ "$drv" = "i915" -o "$drv" = "i965" ] && \
@@ -50,6 +51,9 @@ for drv in $GRAPHIC_DRIVERS; do
 
   [ "$drv" = "vc4" ] && \
     DRM_CONFIG=`echo $DRM_CONFIG | sed -e 's/disable-vc4/enable-vc4/'`
+
+  [ "$drv" = "freedreno" ] && \
+    DRM_CONFIG=`echo $DRM_CONFIG | sed -e 's/disable-freedreno/enable-freedreno/'`
 done
 
 PKG_CONFIGURE_OPTS_TARGET="--disable-udev \
@@ -58,7 +62,6 @@ PKG_CONFIGURE_OPTS_TARGET="--disable-udev \
                            --disable-libkms \
                            $DRM_CONFIG \
                            --disable-nouveau \
-                           --disable-freedreno \
                            --disable-install-test-programs \
                            --disable-cairo-tests \
                            --disable-manpages \
