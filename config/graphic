@@ -87,5 +87,11 @@ get_graphicdrivers() {
       VDPAU_SUPPORT="no"
     fi
 
+    if [ "$drv" = "freedreno" ]; then
+      GALLIUM_DRIVERS="$GALLIUM_DRIVERS,freedreno"
+      VAAPI_SUPPORT="no"
+      VDPAU_SUPPORT="no"
+    fi
+
   done
 }
