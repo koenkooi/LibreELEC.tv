@@ -30,7 +30,7 @@ PKG_SHORTDESC="The Device Tree Compiler"
 PKG_LONGDESC="The Device Tree Compiler"
 PKG_AUTORECONF="no"
 
-PKG_MAKE_OPTS_TARGET="dtc"
+PKG_MAKE_OPTS_TARGET="dtc libfdt"
 
 makeinstall_target() {
   mkdir -p $INSTALL/usr/bin
@@ -40,4 +40,5 @@ makeinstall_target() {
 makeinstall_host() {
   mkdir -p $TOOLCHAIN/bin
     cp -P $PKG_BUILD/dtc $TOOLCHAIN/bin
+    cp -P $PKG_BUILD/libfdt/libfdt.so $TOOLCHAIN/lib
 }
