@@ -62,6 +62,11 @@ case "$LINUX" in
     PKG_SOURCE_DIR="xbian-sources-kernel-${PKG_COMMIT}*"   
     PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET imx6-status-led imx6-soc-fan irqbalanced"
     ;;
+  dragonboard)
+    PKG_VERSION="180b1b7"
+    PKG_URL="https://git.linaro.org/landing-teams/working/qualcomm/kernel.git/snapshot/$PKG_VERSION.tar.xz"
+    PKG_SOURCE_DIR="$PKG_VERSION*"
+    ;;
   *)
     PKG_VERSION="4.13"
     PKG_SHA256="2db3d6066c3ad93eb25b973a3d2951e022a7e975ee2fa7cbe5bddf84d9a49a2c"
