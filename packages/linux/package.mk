@@ -111,7 +111,7 @@ post_patch() {
 
   cp $KERNEL_CFG_FILE $PKG_BUILD/.config
   if [ ! "$BUILD_ANDROID_BOOTIMG" = "yes" ]; then
-    sed -i -e "s|^CONFIG_INITRAMFS_SOURCE=.*$|CONFIG_INITRAMFS_SOURCE=\"$BUILD/image/initramfs.cpio\"|" $PKG_BUILD/.config
+    sed -i -e "s|^CONFIG_INITRAMFS_SOURCE=.*$|CONFIG_INITRAMFS_SOURCE=\"$BUILD/image/initramfs.cpio.gz\"|" $PKG_BUILD/.config
   fi
 
   # set default hostname based on $DISTRONAME
@@ -205,7 +205,7 @@ make_target() {
     dtbTool -o dt.img -s 2048 $KERNEL_DTB_DIRECTORY
 
     mkbootimg --kernel=arch/$TARGET_KERNEL_ARCH/boot/$KERNEL_TARGET \
-              --ramdisk=$BUILD/image/initramfs.cpio \
+              --ramdisk=$BUILD/image/initramfs.cpio.gz \
               --dt dt.img \
               $ANDROID_BOOTIMG_OPTIONS \
               --cmdline "$KERNEL_CMDLINE" \
