@@ -58,4 +58,7 @@ post_makeinstall_target() {
       grep -v "^#" $INSTALL/usr/lib/udev/rc_keymaps/$f
     done
   ) > $INSTALL/usr/lib/udev/rc_keymaps/libreelec_multi
+
+  cp utils/common/cv4l-helpers.h $SYSROOT_PREFIX/usr/include/
+  cp utils/common/v4l-helpers.h $SYSROOT_PREFIX/usr/include/
 }
