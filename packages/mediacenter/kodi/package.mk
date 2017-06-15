@@ -32,7 +32,7 @@ PKG_AUTORECONF="no"
 
 get_graphicdrivers
 
-PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET dbus"
+PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET dbus v4l-utils"
 
 if [ "$DISPLAYSERVER" = "x11" ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET libX11 libXext libdrm libXrandr"
