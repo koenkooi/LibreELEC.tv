@@ -48,11 +48,7 @@
   # Kernel to use. values can be:
   # default:  default mainline kernel
     LINUX="custom"
-<<<<<<< HEAD
     KERNEL_VERSION="1286521"
-=======
-    KERNEL_VERSION="5b8a012"
->>>>>>> 09ce27fb7... projects/S9*: bump kernel to 5b8a012, enable RTC driver for Minix
     KERNEL_URL="https://github.com/kszaq/linux-amlogic-le/archive/$KERNEL_VERSION.tar.gz"
     KERNEL_SOURCE_DIR="linux-amlogic-le-$KERNEL_VERSION*"
     KERNEL_PATCH_DIRS="amlogic-3.14"
