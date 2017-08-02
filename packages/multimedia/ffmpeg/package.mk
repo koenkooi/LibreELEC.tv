@@ -18,12 +18,11 @@
 
 PKG_NAME="ffmpeg"
 # Current branch is: release/3.3-kodi
-PKG_VERSION="30554d7"
-PKG_SHA256="a1bc2f092e1b11ea3271a8fdcef8ec2f9bee7e1cf05f0a1b89ec7f903fee6d14"
+PKG_VERSION="b5153b1"
 PKG_ARCH="any"
 PKG_LICENSE="LGPLv2.1+"
 PKG_SITE="https://ffmpeg.org"
-PKG_URL="https://github.com/xbmc/FFmpeg/archive/${PKG_VERSION}.tar.gz"
+PKG_URL="https://github.com/ldts/FFmpeg/archive/${PKG_VERSION}.tar.gz"
 PKG_SOURCE_DIR="FFmpeg-${PKG_VERSION}*"
 PKG_DEPENDS_TARGET="toolchain yasm:host zlib bzip2 openssl speex"
 PKG_SECTION="multimedia"
@@ -35,6 +34,13 @@ PKG_AUTORECONF="no"
 
 # Dependencies
 get_graphicdrivers
+
+if [ "$V4L2_SUPPORT" = "yes" ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET v4l-utils"
+  FFMPEG_V4L2="--enable-v4l2_m2m --enable-libv4l2"
+else
+  FFMPEG_V4L2="--disable-v4l2_m2m --disable-libv4l2"
+fi
 
 if [ "$VAAPI_SUPPORT" = "yes" ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET intel-vaapi-driver"
@@ -113,7 +119,6 @@ configure_target() {
               --host-cc="$HOST_CC" \
               --host-cflags="$HOST_CFLAGS" \
               --host-ldflags="$HOST_LDFLAGS" \
-              --host-libs="-lm" \
               --extra-cflags="$CFLAGS" \
               --extra-ldflags="$LDFLAGS" \
               --extra-libs="$FFMPEG_LIBS" \
@@ -152,6 +157,7 @@ configure_target() {
               --enable-mdct \
               --enable-rdft \
               --disable-crystalhd \
+              $FFMPEG_V4L2 \
               $FFMPEG_VAAPI \
               $FFMPEG_VDPAU \
               --disable-dxva2 \
@@ -163,6 +169,8 @@ configure_target() {
               --enable-encoder=wmav2 \
               --enable-encoder=mjpeg \
               --enable-encoder=png \
+              --enable-encoder=rawvideo \
+              --enable-encoder=h264_v4l2m2m \
               --disable-decoder=mpeg_xvmc \
               --enable-hwaccels \
               --disable-muxers \
@@ -171,6 +179,7 @@ configure_target() {
               --enable-muxer=asf \
               --enable-muxer=ipod \
               --enable-muxer=mpegts \
+              --enable-muxer=rawvideo \
               --enable-demuxers \
               --enable-parsers \
               --enable-bsfs \
@@ -188,10 +197,8 @@ configure_target() {
               --disable-libfreetype \
               --disable-libgsm \
               --disable-libmp3lame \
-              --disable-libnut \
               --disable-libopenjpeg \
               --disable-librtmp \
-              --disable-libschroedinger \
               --enable-libspeex \
               --disable-libtheora \
               --disable-libvo-amrwbenc \
