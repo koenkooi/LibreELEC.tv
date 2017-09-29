@@ -63,7 +63,7 @@ case "$LINUX" in
     PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET imx6-status-led imx6-soc-fan irqbalanced"
     ;;
   dragonboard)
-    PKG_VERSION="2db2b5d"
+    PKG_VERSION="877f90"
     PKG_URL="https://git.linaro.org/landing-teams/working/qualcomm/kernel.git/snapshot/$PKG_VERSION.tar.xz"
     PKG_SOURCE_DIR="$PKG_VERSION*"
     ;;
