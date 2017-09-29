@@ -44,6 +44,8 @@ make_target() {
 makeinstall_target() {
   mkdir -p $INSTALL/usr/lib/firmware/
     cp -a linux-board-support-package-v${PKG_VERSION%.0}/proprietary-linux/* $INSTALL/usr/lib/firmware
+    mkdir -p $INSTALL/usr/lib/firmware/qcom/venus-1.8/
+    cp -a linux-board-support-package-v${PKG_VERSION%.0}/proprietary-linux/venus* $INSTALL/usr/lib/firmware/qcom/venus-1.8/
     rm $INSTALL/usr/lib/firmware/firmware.tar
 
   MTOOLS_SKIP_CHECK=1 mcopy -n -i linux-board-support-package-v${PKG_VERSION%.0}/bootloaders-linux/NON-HLOS.bin \
