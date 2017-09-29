@@ -36,7 +36,7 @@
     UBOOT_CONFIGFILE=""
 
   # Kernel target
-    KERNEL_TARGET="Image"
+    KERNEL_TARGET="Image.gz"
 
   # Kernel extra targets to build
     KERNEL_UBOOT_EXTRA_TARGET=""
